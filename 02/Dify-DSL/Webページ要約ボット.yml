@@ -1,0 +1,341 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: Webページ要約ボット
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: bowenliang123/md_exporter:3.0.0@18ba7ea05a04f3fac039a6d56634bf09c88b47ccaa822975cda077c3b76a30f5
+    version: null
+kind: app
+version: 0.5.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        attachment_image_file_size_limit: 2
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        file_upload_limit: 50
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        single_chunk_attachment_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: URLを教えていただければ、そのWebページを要約してお伝えします
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: template-transform
+        targetType: tool
+      id: 1768110030781-source-1768116370040-target
+      selected: false
+      source: '1768110030781'
+      sourceHandle: source
+      target: '1768116370040'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: answer
+      id: 1768116370040-source-answer-target
+      selected: false
+      source: '1768116370040'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: tool
+      id: 1768107639483-source-1768702900516-target
+      source: '1768107639483'
+      sourceHandle: source
+      target: '1768702900516'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: template-transform
+      id: 1768702900516-source-1768110030781-target
+      source: '1768702900516'
+      sourceHandle: source
+      target: '1768110030781'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: true
+        title: ユーザー入力
+        type: start
+        variables: []
+      height: 73
+      id: '1768107639483'
+      position:
+        x: 0
+        y: 23
+      positionAbsolute:
+        x: 0
+        y: 23
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: ''
+          form: llm
+          human_description:
+            en_US: ''
+            ja_JP: ''
+            pt_BR: ''
+            zh_Hans: ''
+          label:
+            en_US: url
+            ja_JP: url
+            pt_BR: url
+            zh_Hans: url
+          llm_description: ''
+          max: null
+          min: null
+          name: url
+          options: []
+          placeholder:
+            en_US: ''
+            ja_JP: ''
+            pt_BR: ''
+            zh_Hans: ''
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        params:
+          url: ''
+        plugin_id: null
+        plugin_unique_identifier: null
+        provider_icon:
+          background: '#FFEAD5'
+          content: 🤖
+        provider_id: 28912146-44f4-4df7-9aaa-20738984bcc1
+        provider_name: Webページ要約
+        provider_type: workflow
+        selected: false
+        title: Webページ要約
+        tool_configurations: {}
+        tool_description: Webページの本文を要約します。
+        tool_label: Webページ要約
+        tool_name: summarize_content
+        tool_node_version: '2'
+        tool_parameters:
+          url:
+            type: mixed
+            value: '{{#sys.query#}}'
+        type: tool
+      height: 52
+      id: '1768702900516'
+      position:
+        x: 342
+        y: 34
+      positionAbsolute:
+        x: 342
+        y: 34
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '{{#1768110030781.output#}}
+
+          {{#1768116370040.files#}}'
+        selected: false
+        title: 回答
+        type: answer
+        variables: []
+      height: 120
+      id: answer
+      position:
+        x: 1368
+        y: 0
+      positionAbsolute:
+        x: 1368
+        y: 0
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        selected: false
+        template: Webページを要約しました。
+        title: テンプレート
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1768702900516'
+          - result
+          value_type: string
+          variable: arg1
+      height: 52
+      id: '1768110030781'
+      position:
+        x: 684
+        y: 34
+      positionAbsolute:
+        x: 684
+        y: 34
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Markdown text
+            ja_JP: Markdown text
+            pt_BR: Markdown text
+            zh_Hans: Markdown格式文本
+          label:
+            en_US: Markdown text
+            ja_JP: Markdown text
+            pt_BR: Markdown text
+            zh_Hans: Markdown格式文本
+          llm_description: ''
+          max: null
+          min: null
+          name: md_text
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Optional custom output file name, and the filename suffix is not
+              required.
+            ja_JP: Optional custom output file name, and the filename suffix is not
+              required.
+            pt_BR: Optional custom output file name, and the filename suffix is not
+              required.
+            zh_Hans: 可选的自定义输出文件名，后缀名无需指定
+          label:
+            en_US: Output Filename
+            ja_JP: Output Filename
+            pt_BR: Output Filename
+            zh_Hans: 输出文件名
+          llm_description: ''
+          max: null
+          min: null
+          name: output_filename
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          md_text: ''
+          output_filename: ''
+        plugin_id: bowenliang123/md_exporter
+        plugin_unique_identifier: bowenliang123/md_exporter:2.3.0@e351c7f34c6b4c5ea0b1a8c7337e437edef56cb7b4111f683b9818103f8b2c9b
+        provider_icon: https://cloud.dify.ai/console/api/workspaces/current/plugin/icon?tenant_id=4fe379fd-525d-400a-b0cb-3c4e6bab2189&filename=f0bad95cda1671b4e49f0e05df6122ef9ec5d554e138f128795d11d3806c00ef.svg
+        provider_id: bowenliang123/md_exporter/md_exporter
+        provider_name: bowenliang123/md_exporter/md_exporter
+        provider_type: builtin
+        selected: false
+        title: Markdown to PDF file
+        tool_configurations: {}
+        tool_description: Generate PDF file from Markdown text
+        tool_label: Markdown to PDF file
+        tool_name: md_to_pdf
+        tool_node_version: '2'
+        tool_parameters:
+          md_text:
+            type: mixed
+            value: '{{#1768702900516.result#}}'
+          output_filename:
+            type: mixed
+            value: summry
+        type: tool
+      height: 52
+      id: '1768116370040'
+      position:
+        x: 1026
+        y: 34
+      positionAbsolute:
+        x: 1026
+        y: 34
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    viewport:
+      x: 326.0000000000001
+      y: 412
+      zoom: 0.7
+  rag_pipeline_variables: []
