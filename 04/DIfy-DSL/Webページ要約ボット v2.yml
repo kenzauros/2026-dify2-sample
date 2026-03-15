@@ -1,0 +1,764 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: Webページ要約ボット v2
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: bowenliang123/md_exporter:3.6.9@3f027d63e80b44d5d5a9f706871afaef37905b8f8a89a2d152dc530211a8acb1
+    version: null
+- current_identifier: null
+  type: package
+  value:
+    plugin_unique_identifier: kenzauros/url_extractor:0.0.1@5d0fe9adbad785d81e546423e3a5f712a5975b88d0aa6021acfd65cdf44721bc
+    version: null
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai:0.3.0@99770a45f77910fe0f64c985524f4fe2294fc6ea25cbf1053ba6bddd7604d850
+    version: null
+kind: app
+version: 0.6.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - document
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        attachment_image_file_size_limit: 2
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        file_upload_limit: 50
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        single_chunk_attachment_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 1
+    opening_statement: URLを教えていただければ、そのWebページを要約してお伝えします
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: iteration
+      id: 1770527572935-true-1770526070429-target
+      selected: false
+      source: '1770527572935'
+      sourceHandle: 'true'
+      target: '1770526070429'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: iteration
+        targetType: template-transform
+      id: 1770526070429-source-1770527823271-target
+      selected: false
+      source: '1770526070429'
+      sourceHandle: source
+      target: '1770527823271'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: template-transform
+        targetType: question-classifier
+      id: 1770527823271-source-1770526185751-target
+      selected: false
+      source: '1770527823271'
+      sourceHandle: source
+      target: '1770526185751'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: answer
+      id: 1768116370040-source-answer-target
+      selected: false
+      source: '1768116370040'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: tool
+      id: 1770526185751-1-1768116370040-target
+      selected: false
+      source: '1770526185751'
+      sourceHandle: '1'
+      target: '1768116370040'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1770526070429'
+        sourceType: iteration-start
+        targetType: tool
+      id: 1770526070429start-source-1770530686460-target
+      selected: false
+      source: 1770526070429start
+      sourceHandle: source
+      target: '1770530686460'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: answer
+      id: 1770527572935-false-1771030168869-target
+      selected: false
+      source: '1770527572935'
+      sourceHandle: 'false'
+      target: '1771030168869'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: tool
+      id: 1768107639483-source-1773474952963-target
+      source: '1768107639483'
+      sourceHandle: source
+      target: '1773474952963'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: if-else
+      id: 1773474952963-source-1770527572935-target
+      source: '1773474952963'
+      sourceHandle: source
+      target: '1770527572935'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: tool
+      id: 1770526185751-2-1773478474177-target
+      source: '1770526185751'
+      sourceHandle: '2'
+      target: '1773478474177'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: answer
+      id: 1773478474177-source-answer-target
+      source: '1773478474177'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: ユーザー入力
+        type: start
+        variables: []
+      height: 73
+      id: '1768107639483'
+      position:
+        x: 163
+        y: -9
+      positionAbsolute:
+        x: 163
+        y: -9
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '{{#1768116370040.files#}}
+
+          {{#1773478474177.files#}}
+
+          '
+        selected: false
+        title: 回答
+        type: answer
+        variables: []
+      height: 120
+      id: answer
+      position:
+        x: 1803.0480528631178
+        y: 279.6588369220085
+      positionAbsolute:
+        x: 1803.0480528631178
+        y: 279.6588369220085
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Markdown text
+            ja_JP: Markdown text
+            pt_BR: Markdown text
+            zh_Hans: Markdown格式文本
+          label:
+            en_US: Markdown text
+            ja_JP: Markdown text
+            pt_BR: Markdown text
+            zh_Hans: Markdown格式文本
+          llm_description: ''
+          max: null
+          min: null
+          name: md_text
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Optional custom output file name, and the filename suffix is not
+              required.
+            ja_JP: Optional custom output file name, and the filename suffix is not
+              required.
+            pt_BR: Optional custom output file name, and the filename suffix is not
+              required.
+            zh_Hans: 可选的自定义输出文件名，后缀名无需指定
+          label:
+            en_US: Output Filename
+            ja_JP: Output Filename
+            pt_BR: Output Filename
+            zh_Hans: 输出文件名
+          llm_description: ''
+          max: null
+          min: null
+          name: output_filename
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          md_text: ''
+          output_filename: ''
+        plugin_id: bowenliang123/md_exporter
+        plugin_unique_identifier: bowenliang123/md_exporter:2.3.0@e351c7f34c6b4c5ea0b1a8c7337e437edef56cb7b4111f683b9818103f8b2c9b
+        provider_icon: https://cloud.dify.ai/console/api/workspaces/current/plugin/icon?tenant_id=4fe379fd-525d-400a-b0cb-3c4e6bab2189&filename=f0bad95cda1671b4e49f0e05df6122ef9ec5d554e138f128795d11d3806c00ef.svg
+        provider_id: bowenliang123/md_exporter/md_exporter
+        provider_name: bowenliang123/md_exporter/md_exporter
+        provider_type: builtin
+        selected: false
+        title: Markdown ⮕ PDF
+        tool_configurations: {}
+        tool_description: Generate PDF file from Markdown text
+        tool_label: Markdown to PDF file
+        tool_name: md_to_pdf
+        tool_node_version: '2'
+        tool_parameters:
+          md_text:
+            type: mixed
+            value: '{{#1770527823271.output#}}'
+          output_filename:
+            type: mixed
+            value: summry
+        type: tool
+      height: 52
+      id: '1768116370040'
+      position:
+        x: 1537.190476190476
+        y: 272.6666666666667
+      positionAbsolute:
+        x: 1537.190476190476
+        y: 272.6666666666667
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        error_handle_mode: terminated
+        flatten_output: true
+        height: 172
+        is_parallel: true
+        iterator_input_type: array[string]
+        iterator_selector:
+        - '1773474952963'
+        - urls
+        output_selector:
+        - '1770530686460'
+        - result
+        output_type: array[string]
+        parallel_nums: 10
+        selected: false
+        start_node_id: 1770526070429start
+        title: イテレーション
+        type: iteration
+        width: 486
+      height: 172
+      id: '1770526070429'
+      position:
+        x: 1045.242141716745
+        y: 12
+      positionAbsolute:
+        x: 1045.242141716745
+        y: 12
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 486
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1770526070429start
+      parentId: '1770526070429'
+      position:
+        x: 60
+        y: 62
+      positionAbsolute:
+        x: 1105.242141716745
+        y: 74
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1002
+    - data:
+        classes:
+        - id: '2'
+          name: Word
+        - id: '1'
+          name: PDF
+        instruction: 出力形式としてWord形式が指定されていると考えられる場合は Word、それ以外は PDF
+        instructions: ''
+        model:
+          completion_params:
+            temperature: 0
+            top_p: 0
+          mode: chat
+          name: gpt-4o-mini
+          provider: langgenius/openai/openai
+        query_variable_selector:
+        - '1768107639483'
+        - sys.query
+        selected: false
+        title: 出力形式選択
+        type: question-classifier
+        vision:
+          enabled: false
+      height: 170
+      id: '1770526185751'
+      position:
+        x: 1193.8095238095236
+        y: 215.23809523809527
+      positionAbsolute:
+        x: 1193.8095238095236
+        y: 215.23809523809527
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: not empty
+            id: 45305382-c9d0-421a-86e8-527d3489baa6
+            value: ''
+            varType: array[string]
+            variable_selector:
+            - '1773474952963'
+            - urls
+          id: 'true'
+          logical_operator: and
+        selected: false
+        title: IF/ELSE
+        type: if-else
+      height: 124
+      id: '1770527572935'
+      position:
+        x: 754
+        y: 12
+      positionAbsolute:
+        x: 754
+        y: 12
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        selected: false
+        template: "{% for result in results %}\r\n{{ result }}\r\n\r\n- - -\r\n{%\
+          \ endfor %}"
+        title: 要約結果結合
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1770526070429'
+          - output
+          value_type: array[string]
+          variable: results
+      height: 52
+      id: '1770527823271'
+      position:
+        x: 1586.7619047619046
+        y: 12
+      positionAbsolute:
+        x: 1586.7619047619046
+        y: 12
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        isInIteration: true
+        isInLoop: false
+        is_team_authorization: true
+        iteration_id: '1770526070429'
+        paramSchemas:
+        - auto_generate: null
+          default: ''
+          form: llm
+          human_description:
+            en_US: ''
+            ja_JP: ''
+            pt_BR: ''
+            zh_Hans: ''
+          label:
+            en_US: url
+            ja_JP: url
+            pt_BR: url
+            zh_Hans: url
+          llm_description: ''
+          max: null
+          min: null
+          name: url
+          options: []
+          placeholder:
+            en_US: ''
+            ja_JP: ''
+            pt_BR: ''
+            zh_Hans: ''
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        params:
+          url: ''
+        plugin_id: null
+        plugin_unique_identifier: null
+        provider_icon:
+          background: '#FFEAD5'
+          content: 🤖
+        provider_id: 28912146-44f4-4df7-9aaa-20738984bcc1
+        provider_name: Webページ要約
+        provider_type: workflow
+        selected: false
+        title: Webページ要約
+        tool_configurations: {}
+        tool_description: Webページの本文を要約します。
+        tool_label: Webページ要約
+        tool_name: summarize_content
+        tool_node_version: '2'
+        tool_parameters:
+          url:
+            type: mixed
+            value: '{{#1770526070429.item#}}'
+        type: tool
+      height: 52
+      id: '1770530686460'
+      parentId: '1770526070429'
+      position:
+        x: 184
+        y: 60
+      positionAbsolute:
+        x: 1229.242141716745
+        y: 72
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 1002
+    - data:
+        answer: URLが認識できませんでした。要約するWebページのURLを指定してください。
+        selected: false
+        title: 回答 (URL検出不可)
+        type: answer
+        variables: []
+      height: 116
+      id: '1771030168869'
+      position:
+        x: 1193.8095238095236
+        y: 408.8021159162264
+      positionAbsolute:
+        x: 1193.8095238095236
+        y: 408.8021159162264
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Input string includes URLs to extract
+            ja_JP: 抽出するURLを含む入力文字列
+            pt_BR: Input string includes URLs to extract
+            zh_Hans: 输入字符串包含要提取的URL
+          label:
+            en_US: Input string
+            ja_JP: 入力文字列
+            pt_BR: Input string
+            zh_Hans: 输入字符串
+          llm_description: Input string includes URLs to extract
+          max: null
+          min: null
+          name: input
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        params:
+          input: ''
+        plugin_id: kenzauros/url_extractor
+        plugin_unique_identifier: kenzauros/url_extractor:0.0.1@4be5eb29308fa17e406660ae6ad7c556f4ea2e2e0555a4b2bb4fa0c2af491f13
+        provider_icon: https://cloud.dify.ai/console/api/workspaces/current/plugin/icon?tenant_id=4fe379fd-525d-400a-b0cb-3c4e6bab2189&filename=f1441c071a96f87326f5eb2ae2bfc5a570e9260e7d2b74c2ac15df4037231c64.svg
+        provider_id: kenzauros/url_extractor/url_extractor
+        provider_name: kenzauros/url_extractor/url_extractor
+        provider_type: builtin
+        selected: false
+        title: url_extractor
+        tool_configurations: {}
+        tool_description: URL Extractor Plugin
+        tool_label: url_extractor
+        tool_name: url_extractor
+        tool_node_version: '2'
+        tool_parameters:
+          input:
+            type: mixed
+            value: '{{#sys.query#}}'
+        type: tool
+      height: 52
+      id: '1773474952963'
+      position:
+        x: 458.940737652739
+        y: 12
+      positionAbsolute:
+        x: 458.940737652739
+        y: 12
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Markdown text
+            ja_JP: Markdown text
+            pt_BR: Markdown text
+            zh_Hans: Markdown格式文本
+          label:
+            en_US: Markdown text
+            ja_JP: Markdown text
+            pt_BR: Markdown text
+            zh_Hans: Markdown格式文本
+          llm_description: ''
+          max: null
+          min: null
+          name: md_text
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Optional docx template file for styling。Use "Home"-"Styles Pane"
+              in Microsoft Word to edit styles of the docx file.
+            ja_JP: Optional docx template file for styling。Use "Home"-"Styles Pane"
+              in Microsoft Word to edit styles of the docx file.
+            pt_BR: Optional docx template file for styling。Use "Home"-"Styles Pane"
+              in Microsoft Word to edit styles of the docx file.
+            zh_Hans: 可选的docx模板文件，用于样式控制。使用Microsoft Word中“开始”-“样式窗格”对docx文件的样式进行编辑。
+          label:
+            en_US: DOCX Template File
+            ja_JP: DOCX Template File
+            pt_BR: DOCX Template File
+            zh_Hans: DOCX 模板文件
+          llm_description: An optional .pptx file that serves as a template for the
+            generated presentation
+          max: null
+          min: null
+          name: docx_template_file
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: file
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Optional custom output file name, and the filename suffix is not
+              required.
+            ja_JP: Optional custom output file name, and the filename suffix is not
+              required.
+            pt_BR: Optional custom output file name, and the filename suffix is not
+              required.
+            zh_Hans: 可选的自定义输出文件名，后缀名无需指定
+          label:
+            en_US: Output Filename
+            ja_JP: Output Filename
+            pt_BR: Output Filename
+            zh_Hans: 输出文件名
+          llm_description: ''
+          max: null
+          min: null
+          name: output_filename
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          docx_template_file: ''
+          md_text: ''
+          output_filename: ''
+        plugin_id: bowenliang123/md_exporter
+        plugin_unique_identifier: bowenliang123/md_exporter:3.5.0@458002a2c9e41c04485ee03d104f768110516083a208c0f4d37bcefbbe4c4105
+        provider_icon: https://cloud.dify.ai/console/api/workspaces/current/plugin/icon?tenant_id=4fe379fd-525d-400a-b0cb-3c4e6bab2189&filename=423381ae5c403b039de8be4530cf6fef91b7d7f5d3e70d8ec63ae41ef9d6abc3.png
+        provider_id: bowenliang123/md_exporter/md_exporter
+        provider_name: bowenliang123/md_exporter/md_exporter
+        provider_type: builtin
+        selected: false
+        title: Markdown ⮕ DOCX
+        tool_configurations: {}
+        tool_description: Generate DOCX file from Markdown text
+        tool_label: Markdown ⮕ DOCX
+        tool_name: md_to_docx
+        tool_node_version: '2'
+        tool_parameters:
+          docx_template_file:
+            type: constant
+            value: null
+          md_text:
+            type: mixed
+            value: '{{#1770527823271.output#}}'
+          output_filename:
+            type: mixed
+            value: summary
+        type: tool
+      height: 52
+      id: '1773478474177'
+      position:
+        x: 1537.190476190476
+        y: 215.23809523809527
+      positionAbsolute:
+        x: 1537.190476190476
+        y: 215.23809523809527
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    viewport:
+      x: -295.65575424335196
+      y: 571.5867369578289
+      zoom: 0.7578582832551995
+  rag_pipeline_variables: []

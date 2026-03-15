@@ -23,10 +23,15 @@
 
 ### 第3回: 高度なチャットフロー設計 ― 質問分類とイテレーション、条件分岐
 
-- チャットフロー [Webページ要約ボットv2.yml](./02/Dify-DSL/Webページ要約ボットv2.yml)
-- チャットフロー [Webページ要約ボットv2_Wordテンプレートファイル指定あり.yml](./02/Dify-DSL/Webページ要約ボットv2_Wordテンプレートファイル指定あり.yml)
+- チャットフロー [Webページ要約ボットv2.yml](./03/Dify-DSL/Webページ要約ボットv2.yml)
+- チャットフロー [Webページ要約ボットv2_Wordテンプレートファイル指定あり.yml](./03/Dify-DSL/Webページ要約ボットv2_Wordテンプレートファイル指定あり.yml)
 
 ※Webページ要約ワークフローは第2回と共通です。
+
+### 第4回: プラグイン自作とチャットフローへの組み込み ― 再利用可能なカスタムツールの開発
+
+- チャットフロー [Webページ要約ボットv2.yml](./04/Dify-DSL/Webページ要約ボットv2.yml)
+- ツールプラグインサンプル [dify-url-extractor-plugin](https://github.com/kenzauros/dify-url-extractor-plugin/)
 
 #### インポート手順
 
